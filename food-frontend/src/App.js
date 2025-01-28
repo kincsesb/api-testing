@@ -2,37 +2,43 @@ import React, { useEffect, useState } from 'react';
 
 function App() {
   const [foods, setFoods] = useState([]);
-  const [error, setError] = useState(null);
+  const [newFoods, setNewFoods] = useState('');
 
   useEffect(() => {
-    // Fetch food list from the API
     fetch('/api/foods')
-    .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setFoods(data);
-      })
-      .catch((err) => {
-        console.error('Error fetching foods:', err);
-        setError(err.message);
-      });
+      .then((response) => response.json())
+      .then((data) => setFoods(data))
+      .catch((error) => console.error('Error fetching foods:', error));
   }, []);
+
+  const updateFoodList = () => {
+    const updatedFoods = newFoods.split(',').map((food) => food.trim());
+
+    fetch('/api/foods', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ foodList: updatedFoods }),
+    })
+      .then((response) => response.json())
+      .then((data) => setFoods(data.foodList))
+      .catch((error) => console.error('Error updating food list:', error));
+  };
 
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
       <h1>Food List</h1>
-      {error && <p style={{ color: 'red' }}>Error: {error}</p>}
       <ul>
-        {foods.length > 0 ? (
-          foods.map((food, index) => <li key={index}>{food}</li>)
-        ) : (
-          <p>Loading...</p>
-        )}
+        {foods.map((food, index) => (
+          <li key={index}>{food}</li>
+        ))}
       </ul>
+      <input
+        type="text"
+        placeholder="Enter new foods, separated by commas"
+        value={newFoods}
+        onChange={(e) => setNewFoods(e.target.value)}
+      />
+      <button onClick={updateFoodList}>Update Food List</button>
     </div>
   );
 }
