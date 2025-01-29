@@ -56,32 +56,36 @@ function App() {
     console.log('Yes, this is a frontend bug! The button is not triggering the request.');
 };
 
-  return (
-    <div className="container">
-      <h1>Food List</h1>
-      <div className="count-box">Total Foods: {count > 15 ? "15" : count}</div>
-      <ul className="food-list">
-        {foods.map((food, index) => (
-          <li key={index} className="food-item">
-            <img src={food.image} alt={food.name} className="food-image" />
-            <span className="food-name">{food.name}</span>
-          </li>
-        ))}
-      </ul>
-      <div className="input-container">
-        <input
-          type="text"
-          placeholder="Enter new foods, separated by commas"
-          value={newFoods}
-          onChange={(e) => setNewFoods(e.target.value)}
-          className="food-input"
-        />
-        <button className="update-button" onClick={updateFoodList}>
-          Update Food List
-        </button>
-      </div>
+return (
+  <div className="container">
+    <h1>Food List</h1>
+    {/* 
+      You should remove this if statement for bug fixing. 
+    */}
+    <div className="count-box">Total Foods: {count > 15 ? "15" : count}</div>
+    <ul className="food-list">
+      {foods.map((food, index) => (
+        <li key={index} className="food-item">
+          <img src={food.image} alt={food.name} className="food-image" />
+          <span className="food-name">{food.name}</span>
+        </li>
+      ))}
+    </ul>
+    
+    <div className="input-container">
+      <input
+        type="text"
+        placeholder="Enter new foods, separated by commas"
+        value={newFoods}
+        onChange={(e) => setNewFoods(e.target.value)}
+        className="food-input"
+      />
+      <button className="update-button" onClick={updateFoodList}>
+        Update Food List
+      </button>
     </div>
-  );
+  </div>
+);
 }
 
 export default App;
