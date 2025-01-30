@@ -30,7 +30,9 @@ app.get('/api/foods', (req, res) => {
 
 app.post('/api/foods', (req, res) => {
   console.log('Received new food list, but this API has a secret bug!');
-  res.status(200).json({ message: 'Update request received!' });
+  res.status(400).json(
+    { message: 'Received new food list, but this API has a secret bug! This is a backend bug. Because the backend cant handle the new request.' }
+  );
 });
 
 /*
