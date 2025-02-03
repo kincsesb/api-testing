@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "postinstall": "cd ../frontend && npm install && npm run",
+    "postinstall": "cd ../food-frontend && npm install && npm run",
     "start": "node server.js"
   },
   "keywords": [],
