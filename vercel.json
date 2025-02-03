@@ -1,26 +1,25 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "food-backend/server.js",
-        "use": "@vercel/node"
-      },
-      {
-        "src": "food-frontend/package.json",
-        "use": "@vercel/static-build",
-        "config": { "distDir": "food-frontend/build" }
-      }
-    ],
-    "routes": [
-      {
-        "src": "/api/(.*)",
-        "dest": "food-backend/server.js"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "food-frontend/build/index.html"
-      }
-    ],
-    "buildCommand": "cd food-backend && npm install && cd ../food-frontend && npm install && npm run build"
-  }
-  
+  "version": 2,
+  "builds": [
+    {
+      "src": "food-backend/server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "food-frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "build" }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "food-backend/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "food-frontend/build/index.html"
+    }
+  ],
+  "buildCommand": "cd food-frontend && npm install && npm run build"
+}
