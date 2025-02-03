@@ -4,13 +4,23 @@
       {
         "src": "food-backend/server.js",
         "use": "@vercel/node"
+      },
+      {
+        "src": "food-frontend/package.json",
+        "use": "@vercel/static-build",
+        "config": { "distDir": "food-frontend/build" }
       }
     ],
     "routes": [
       {
-        "src": "/(.*)",
+        "src": "/api/(.*)",
         "dest": "food-backend/server.js"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/food-frontend/build/index.html"
       }
     ],
-    "buildCommand": "npm install --prefix food-backend && npm install --prefix food-frontend && npm start --prefix food-frontend"
+    "buildCommand": "npm install --prefix food-backend && npm install --prefix food-frontend && npm run build --prefix food-frontend"
   }
+  
