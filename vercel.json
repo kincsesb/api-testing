@@ -8,7 +8,7 @@
       {
         "src": "food-frontend/package.json",
         "use": "@vercel/static-build",
-        "config": { "distDir": "build" }
+        "config": { "distDir": "food-frontend/build" }
       }
     ],
     "routes": [
@@ -21,6 +21,6 @@
         "dest": "food-frontend/build/index.html"
       }
     ],
-    "buildCommand": "cd food-frontend && npm install && npm run build"
+    "buildCommand": "cd food-backend && npm install && cd ../food-frontend && npm install && npm run build"
   }
   
