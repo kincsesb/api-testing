@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "cd ../food-frontend && npm install && npm run",
-    "start": "node server.js"
+    "start": "npm install && node server.js"
   },
   "keywords": [],
   "author": "",
