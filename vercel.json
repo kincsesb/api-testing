@@ -18,7 +18,7 @@
       },
       {
         "src": "/(.*)",
-        "dest": "/food-frontend/build/index.html"
+        "dest": "food-frontend/build/index.html"
       }
     ],
     "buildCommand": "npm install --prefix food-backend && npm install --prefix food-frontend && npm run build --prefix food-frontend"
