@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "food-backend/server.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "food-backend/server.js"
+      }
+    ],
+    "buildCommand": "npm install --prefix food-backend && npm install --prefix food-frontend && npm start --prefix food-frontend"
+  }
